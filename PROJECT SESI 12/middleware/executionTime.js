@@ -1,0 +1,12 @@
+const executionTime = (req, res, next) => {
+  const start = Date.now();
+
+  res.on('finish', () => {
+    const duration = Date.now() - start;
+    console.log(`Waktu eksekusi ${req.method} ${req.url}: ${duration} ms`);
+  });
+
+  next();
+};
+
+module.exports = executionTime;
